@@ -7,12 +7,13 @@ void setup()
     pinMode(A3, OUTPUT);
     pinMode(A4, OUTPUT);
     pinMode(A5, OUTPUT);
-    pinMode(13, OUTPUT);
-    pinMode(12, OUTPUT);
-    pinMode(11, OUTPUT);
-    pinMode(10, OUTPUT);
-    pinMode(9, OUTPUT);
+    pinMode(A6, OUTPUT);
+    pinMode(A7, OUTPUT);
+    pinMode(A8, OUTPUT);
+    pinMode(A9, OUTPUT);
+    pinMode(A10, OUTPUT);
     // Set up data pins
+    pinMode(9, INPUT);
     pinMode(8, INPUT);
     pinMode(7, INPUT);
     pinMode(6, INPUT);
@@ -20,8 +21,6 @@ void setup()
     pinMode(4, INPUT);
     pinMode(3, INPUT);
     pinMode(2, INPUT);
-    // Skip D1 so that we can use it as TX
-    pinMode(0, INPUT);
     // Set up serial output for writing data bytes
     Serial.begin(9600);
     // Delay so we can hook up the serial monitor
@@ -36,12 +35,12 @@ void setup()
 
 const int addressLines[] = 
 {
-    A0,A1,A2,A3,A4,A5,13,12,11,10,9
+    A0,A1,A2,A3,A4,A5,A6, A7, A8, A9, A10
 };
 
 const int dataLines[] = 
 {
-    8,7,6,5,4,3,2,0
+    9,8,7,6,5,4,3,2
 };
 
 unsigned char readByte(unsigned int address)
