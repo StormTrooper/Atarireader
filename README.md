@@ -1,16 +1,19 @@
-#Atari Cartridge Reader
+# Atari Cartridge Reader
 
-##Overview
+## Overview
 
-This is the source code and hardware design for an Arduino-based device to extract ROM images from Atari cartridges. For more detailed information about the build, see my blog post at TKTKTKTK
+This is the source code and hardware design for an Arduino-based device to extract ROM images from Atari 2600 cartridges.
+Original design from [Brian](https://netninja.com/2016/02/18/reading-atari-cartridges-with-an-arduino/)
+Source code at [github](https://github.com/BrianEnigma/Arduino)
 
-##Hardware
 
-I used an old [Arduino](https://www.arduino.cc/), specifically the Diecimila model, but any modern Arduino should work. I also used an [Adafruit Screwshield](https://www.adafruit.com/products/196) for mounting the connector and routing connections to Arduino pins. The cartridge connection itself comes from [a 24 position edgeboard connector from Digikey](https://www.digikey.com/product-detail/en/EBC12DCWN/S3304-ND/927256).
+## Hardware
+
+I have updated code to use Arduino Mega. The cartridge connection itself comes from [a 24 position edgeboard connector from Digikey](https://www.digikey.com/product-detail/en/EBC12DCWN/S3304-ND/927256).
 
 This is a fairly easy build, given that the cartridges work at 5V levels, consisting of directly connecting address and data lines between the cartridge slot and the Arduino. This particular Arduino has just barely enough pins for reading smaller ROM cartridges.
 
-###Connections
+### Connections
 
 You can find the [Atari cartridge pinouts online](http://www.atariage.com/2600/faq/index.html?SystemID=2600#pinouts), but they basically amount to the following:
 
