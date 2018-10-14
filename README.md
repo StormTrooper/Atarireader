@@ -3,7 +3,7 @@
 ## Overview
 
 This is the source code and hardware design for an Arduino-based device to extract ROM images from Atari 2600 cartridges.
-Original design from [Brian](https://netninja.com/2016/02/18/reading-atari-cartridges-with-an-arduino/)
+Original design from [Brian]. (https://netninja.com/2016/02/18/reading-atari-cartridges-with-an-arduino/)
 Source code at [github](https://github.com/BrianEnigma/Arduino)
 
 
@@ -11,7 +11,7 @@ Source code at [github](https://github.com/BrianEnigma/Arduino)
 
 I have updated code to use Arduino Mega. The cartridge connection itself comes from [a 24 position edgeboard connector from Digikey](https://www.digikey.com/product-detail/en/EBC12DCWN/S3304-ND/927256).
 
-This is a fairly easy build, given that the cartridges work at 5V levels, consisting of directly connecting address and data lines between the cartridge slot and the Arduino. This particular Arduino has just barely enough pins for reading smaller ROM cartridges.
+This is a fairly easy build, given that the cartridges work at 5V levels, consisting of directly connecting address and data lines between the cartridge slot and the Arduino. 
 
 ### Connections
 
@@ -42,26 +42,26 @@ The address lines connect to the following Arduino pins. Remember that pins A10-
 - cartridge A3 to Arduino's (analog) A3
 - cartridge A4 to Arduino's (analog) A4
 - cartridge A5 to Arduino's (analog) A5
-- cartridge A6 to Arduino's (digital) 13
-- cartridge A7 to Arduino's (digital) 12
-- cartridge A8 to Arduino's (digital) 11
-- cartridge A9 to Arduino's (digital) 10
+- cartridge A6 to Arduino's (digital) A6
+- cartridge A7 to Arduino's (digital) A7
+- cartridge A8 to Arduino's (digital) A8
+- cartridge A9 to Arduino's (digital) A9
 - cartridge A11 to ground
-- cartridge A10 to Arduino's (digital) D9
+- cartridge A10 to Arduino's (digital) A10
 - cartridge A12 to +5V
 
-The data lines map in the following way. Note that we're skipping the D1 / TX pin because we need the serial port to send the cartridge's content to a connected desktop PC.
+The data lines map in the following way. 
 
-- cartridge D0 to Arduino's (digital) D0 / RX
-- cartridge D1 to Arduino's (digital) D2
-- cartridge D2 to Arduino's (digital) D3
-- cartridge D3 to Arduino's (digital) D4
-- cartridge D4 to Arduino's (digital) D5
-- cartridge D5 to Arduino's (digital) D6
-- cartridge D6 to Arduino's (digital) D7
-- cartridge D7 to Arduino's (digital) D8
+- cartridge D0 to Arduino's (digital) D2
+- cartridge D1 to Arduino's (digital) D3
+- cartridge D2 to Arduino's (digital) D4
+- cartridge D3 to Arduino's (digital) D5
+- cartridge D4 to Arduino's (digital) D6
+- cartridge D5 to Arduino's (digital) D7
+- cartridge D6 to Arduino's (digital) D8
+- cartridge D7 to Arduino's (digital) D9
 
-Between address, data, and serial TX, we've effectively used all the available pins on the Diecimila. The top two pins are are-wired, meaning we can only access 2^10 address space at a time. This is sufficient for smaller cartridges and as a proof-of-concept, but you'll need to manually hard-wire pins to perform banking if you want to use this particular setup for larger ROMs. More advanced Arduino boards provide more pins. The setup is similar, but left as an exercise for the reader.
+The top two pins are hard-wired, meaning we can only access 2^10 address space at a time. This is sufficient for smaller cartridges and as a proof-of-concept, but you'll need to manually hard-wire pins to perform banking if you want to use this particular setup for larger ROMs. More advanced Arduino boards provide more pins. The setup is similar, but left as an exercise for the reader.
 
 **Build Hardships**
 
@@ -73,21 +73,20 @@ I ran into several issues during the build, detailed more fully in the blog post
 
 In the future, I would definitely see if I could find a taller connector with better pin spacing.
 
-##Serial Dump Software
+## Serial Dump Software
 
-You can find the serial dump software, which gets loaded into the Arduino, at `Atarireader/Atarireader.ino`. Note that because the hardware design overloads the RX pin, you will be unable to load this into the Arduino if a cartridge is plugged in.
+You can find the serial dump software, which gets loaded into the Arduino, at `Atarireader/Atarireader.ino`.
 
-Once running, the serial dump software counts backwards from 10 on the serial port — time to let you plug in a cartridge and start up an app to capture the serial port on your desktop — before dumping ROM content.
 
-##Serial Capture
+## Serial Capture
 
 You can capture the ROM dump using the Arduino IDE's serial monitor (and copy/paste into a text file) or by using a serial terminal emulator such as Minicom.
 
-##Reassembly Software
+## Reassembly Software
 
 The `reassemble.rb` script will take a capture file and translate it into a binary file.
 
-##Future Design Considerations
+## Future Design Considerations
 
 This project was built on a workbench in an afternoon as a proof-of-concept. If I wanted to do a more formal job with this design I would look toward the following:
 
